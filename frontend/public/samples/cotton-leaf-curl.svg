@@ -1,0 +1,21 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" rx="32" fill="#F6F0E3"/>
+  <path d="M317 52C378 74 442 128 461 196C479 260 438 333 368 363C299 393 201 374 157 309C114 245 122 148 180 96C220 60 272 44 317 52Z" fill="#4C8B42"/>
+  <path d="M183 282C235 245 283 215 320 98" stroke="#D7F0CC" stroke-width="8" stroke-linecap="round"/>
+  <path d="M278 138C314 175 347 216 379 302" stroke="#D7F0CC" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+  <path d="M234 176C267 201 292 234 312 277" stroke="#D7F0CC" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M341 142C370 164 395 196 414 240" stroke="#D7F0CC" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+  <path d="M487 116C522 141 547 176 558 221C568 266 560 313 533 350" stroke="#C96D57" stroke-width="11" stroke-linecap="round"/>
+  <path d="M515 143C493 162 475 183 461 210" stroke="#E9A38F" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="237" cy="165" r="17" fill="#E6D256"/>
+  <circle cx="277" cy="219" r="13" fill="#E6D256"/>
+  <circle cx="314" cy="248" r="11" fill="#E6D256"/>
+  <circle cx="356" cy="195" r="15" fill="#E6D256"/>
+  <circle cx="403" cy="244" r="12" fill="#E6D256"/>
+  <circle cx="247" cy="151" r="6" fill="#A84E38"/>
+  <circle cx="283" cy="228" r="5" fill="#A84E38"/>
+  <circle cx="360" cy="188" r="6" fill="#A84E38"/>
+  <circle cx="397" cy="250" r="5" fill="#A84E38"/>
+  <path d="M83 350C145 316 196 316 246 352" stroke="#D5B897" stroke-width="18" stroke-linecap="round"/>
+  <text x="80" y="390" fill="#6E4F34" font-family="Georgia, serif" font-size="24">Seminar sample leaf</text>
+</svg>

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "yellow-leaves",
+    "keywords": ["yellow", "yellowing", "chlorosis", "pale"],
+    "answer_en": "Yellow leaves are often caused by nitrogen deficiency, overwatering, poor drainage, or early disease stress. Check whether older leaves are yellowing first, then review irrigation and nutrition before spraying.",
+    "answer_hi": "पीले पत्ते अक्सर नाइट्रोजन की कमी, ज्यादा पानी, खराब ड्रेनेज या शुरुआती रोग तनाव के कारण होते हैं। पहले देखें कि पुराने पत्ते पीले हो रहे हैं या नहीं, फिर सिंचाई और पोषण की जांच करें।",
+    "answer_ta": "மஞ்சள் இலைகள் பொதுவாக நைட்ரஜன் குறைவு, அதிக நீர்ப்பாசனம், குறைந்த வடிகால் அல்லது ஆரம்ப நோய் அழுத்தம் காரணமாக வருகிறது. முதலில் பழைய இலைகள் மஞ்சளாகிறதா என்று பார்த்து, பிறகு நீர்ப்பாசனமும் ஊட்டச்சத்தையும் சரிபார்க்கவும்.",
+    "follow_ups": [
+      "Tell me the crop name and whether old or new leaves are yellowing.",
+      "Share recent irrigation frequency.",
+      "Ask for an organic correction plan."
+    ]
+  },
+  {
+    "id": "leaf-curl",
+    "keywords": ["leaf curl", "curl", "whitefly", "twisted leaves"],
+    "answer_en": "Leaf Curl Virus is commonly linked to insect vectors such as whiteflies. Remove badly affected leaves, monitor whitefly pressure, and use neem-based or approved targeted control measures early.",
+    "answer_hi": "लीफ कर्ल वायरस अक्सर सफेद मक्खी जैसे कीट वाहकों से जुड़ा होता है। ज्यादा प्रभावित पत्तों को हटाएं, सफेद मक्खी पर नजर रखें और जल्दी नीम आधारित या अनुशंसित नियंत्रण उपाय करें।",
+    "answer_ta": "லீஃப் கர்ல் வைரஸ் பெரும்பாலும் வெள்ளை ஈ போன்ற பூச்சி மூலம் பரவுகிறது. கடுமையாக பாதிக்கப்பட்ட இலைகளை அகற்றி, பூச்சி அழுத்தத்தை கண்காணித்து, ஆரம்பத்திலேயே வேம்பு அடிப்படையிலான அல்லது பரிந்துரைக்கப்பட்ட கட்டுப்பாட்டை பயன்படுத்துங்கள்.",
+    "follow_ups": [
+      "Ask for an organic spray option.",
+      "Upload a leaf image to compare symptoms.",
+      "Tell me the crop growth stage."
+    ]
+  },
+  {
+    "id": "irrigation",
+    "keywords": ["irrigation", "water", "watering", "soil moisture"],
+    "answer_en": "Use the irrigation module's recommendation as your baseline, then avoid watering just before strong rainfall. Early morning irrigation usually reduces evaporation loss.",
+    "answer_hi": "सिंचाई मॉड्यूल की सलाह को आधार मानें और तेज बारिश से ठीक पहले पानी देने से बचें। सुबह जल्दी सिंचाई करने से वाष्पीकरण कम होता है।",
+    "answer_ta": "நீர்ப்பாசன தொகுதி கூறும் பரிந்துரையை அடிப்படையாக எடுத்து, பலமான மழைக்கு முன் நீர் விடுவதை தவிர்க்கவும். அதிகாலை நீர்ப்பாசனம் ஆவியாகும் இழப்பை குறைக்கும்.",
+    "follow_ups": [
+      "Share crop name and growth stage.",
+      "Ask how much water is needed per hectare.",
+      "Tell me the latest soil moisture reading."
+    ]
+  },
+  {
+    "id": "market",
+    "keywords": ["price", "market", "sell", "mandi"],
+    "answer_en": "Compare the latest mandi price with the forecast horizon. If the projected price trend is rising and storage risk is low, waiting may improve revenue.",
+    "answer_hi": "ताजा मंडी भाव की तुलना पूर्वानुमान से करें। अगर कीमत बढ़ने की संभावना है और भंडारण का जोखिम कम है, तो थोड़ी देर रुकना लाभ बढ़ा सकता है।",
+    "answer_ta": "சமீபத்திய சந்தை விலையை முன்னறிவிப்புடன் ஒப்பிடுங்கள். விலை உயர வாய்ப்பு இருந்தும் சேமிப்பு ஆபத்து குறைந்திருந்தால், சில நாட்கள் காத்திருப்பது வருமானத்தை அதிகரிக்கலாம்.",
+    "follow_ups": [
+      "Tell me the crop and market name.",
+      "Ask for expected revenue based on your yield.",
+      "Share the current market price if you have it."
+    ]
+  },
+  {
+    "id": "soil-ph",
+    "keywords": ["ph", "soil", "acidic", "alkaline"],
+    "answer_en": "Soil pH controls nutrient availability. Most field crops perform better in slightly acidic to neutral soils, so strongly acidic or alkaline values can reduce uptake even when nutrients are present.",
+    "answer_hi": "मिट्टी का pH पोषक तत्वों की उपलब्धता को नियंत्रित करता है। अधिकांश फसलें हल्की अम्लीय से न्यूट्रल मिट्टी में बेहतर बढ़ती हैं, इसलिए बहुत अधिक अम्लीय या क्षारीय pH पोषक तत्वों के अवशोषण को कम कर सकता है।",
+    "answer_ta": "மண்ணின் pH ஊட்டச்சத்து கிடைப்பதை கட்டுப்படுத்துகிறது. பெரும்பாலான பயிர்கள் சற்று அமிலம் முதல் நடுத்தர pH வரை நல்ல வளர்ச்சி காணும்; அதற்கு வெளியே சென்றால் ஊட்டச்சத்து உட்கொள்ளல் குறையலாம்.",
+    "follow_ups": [
+      "Share your soil pH reading.",
+      "Ask which crops suit your current pH range.",
+      "Tell me your NPK values too."
+    ]
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "crop": "cotton",
+    "disease_name": "Leaf Curl Virus",
+    "severity": "high",
+    "confidence_base": 0.86,
+    "keywords": ["curl", "leaf curl", "whitefly", "twisted", "curled"],
+    "remedies": [
+      "Remove heavily infected leaves and nearby weeds.",
+      "Control whitefly vectors with neem-based or recommended targeted sprays.",
+      "Avoid excessive nitrogen while the crop is under viral stress."
+    ],
+    "notes": [
+      "Leaf curl symptoms are commonly associated with vector-borne viral infection.",
+      "Early management matters more than late heavy spraying."
+    ]
+  },
+  {
+    "crop": "rice",
+    "disease_name": "Bacterial Leaf Blight",
+    "severity": "high",
+    "confidence_base": 0.82,
+    "keywords": ["blight", "yellow streak", "leaf tip drying", "water-soaked"],
+    "remedies": [
+      "Avoid excessive standing water and improve field hygiene.",
+      "Use balanced fertilization and avoid overuse of nitrogen.",
+      "Follow local extension guidance for resistant varieties and bactericide use."
+    ],
+    "notes": [
+      "Blight often starts near the leaf tip and progresses downward.",
+      "Wet conditions can accelerate spread."
+    ]
+  },
+  {
+    "crop": "maize",
+    "disease_name": "Common Rust",
+    "severity": "medium",
+    "confidence_base": 0.8,
+    "keywords": ["rust", "orange pustules", "brown spots", "powdery spots"],
+    "remedies": [
+      "Monitor spread across younger leaves before deciding on fungicide use.",
+      "Improve spacing and airflow where possible.",
+      "Use resistant hybrids in the next cycle if rust pressure is recurring."
+    ],
+    "notes": [
+      "Rust usually appears as orange to brown pustules on leaf surfaces."
+    ]
+  },
+  {
+    "crop": "groundnut",
+    "disease_name": "Tikka Leaf Spot",
+    "severity": "medium",
+    "confidence_base": 0.79,
+    "keywords": ["leaf spot", "tikka", "dark spots", "round lesions"],
+    "remedies": [
+      "Remove heavily infected foliage where practical.",
+      "Reduce overhead irrigation late in the day.",
+      "Use crop rotation and follow local fungicide guidance if spread increases."
+    ],
+    "notes": [
+      "Leaf spot generally appears as circular dark lesions that expand over time."
+    ]
+  },
+  {
+    "crop": "generic",
+    "disease_name": "Nutrient Deficiency / Chlorosis",
+    "severity": "medium",
+    "confidence_base": 0.74,
+    "keywords": ["yellow", "yellowing", "chlorosis", "pale leaves"],
+    "remedies": [
+      "Check nitrogen and micronutrient balance in the soil.",
+      "Review irrigation because overwatering can mimic disease symptoms.",
+      "Compare older and younger leaves to distinguish nutrient stress from infection."
+    ],
+    "notes": [
+      "Yellowing may be driven by nutrition, root stress, or early disease."
+    ]
+  }
+]
+
