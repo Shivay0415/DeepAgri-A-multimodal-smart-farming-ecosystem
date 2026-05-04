@@ -71,14 +71,13 @@ powershell -ExecutionPolicy Bypass -File .\run-dev.ps1
 
 ## Public Deployment
 
-The repository now includes a [render.yaml](C:/Users/dell/Documents/capstone%20project/render.yaml) blueprint for a two-service Render deployment:
+The repository now includes a [render.yaml](C:/Users/dell/Documents/capstone%20project/render.yaml) blueprint for a single-service Render deployment:
 
-- `deepagri-backend`: Django API on Render Web Service
-- `deepagri-frontend`: React dashboard on Render Static Site
+- `deepagri-platform`: one Docker-based Render web service that builds the React frontend and serves it through Django
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Shivay0415/DeepAgri-A-multimodal-smart-farming-ecosystem)
 
-The frontend reads its production API base from `VITE_API_BASE_URL`, documented in [frontend/.env.example](C:/Users/dell/Documents/capstone%20project/frontend/.env.example). In the Render blueprint, that value is wired from the backend service URL so the dashboard can talk to Django after deployment.
+This avoids the cross-service URL wiring that can fail during Blueprint sync. The React app is built into `backend/frontend_dist`, Django serves the SPA entry, and WhiteNoise serves the compiled static assets.
 
 If you want OpenWeather, OpenAI, or Gemini support in production, add these optional environment variables in Render after the first deploy:
 
@@ -87,6 +86,8 @@ If you want OpenWeather, OpenAI, or Gemini support in production, add these opti
 - `OPENAI_CHAT_MODEL`
 - `GEMINI_API_KEY`
 - `GEMINI_MODEL`
+
+If a previous Render deployment attempt created partial services from the older two-service blueprint, delete those failed services before retrying this updated one-service deployment.
 
 ## Module 1 Status
 

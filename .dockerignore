@@ -1,0 +1,10 @@
+.git
+.venv
+node_modules
+frontend/node_modules
+backend/__pycache__
+backend/staticfiles
+backend/frontend_dist
+runtime-logs
+dist
+*.log

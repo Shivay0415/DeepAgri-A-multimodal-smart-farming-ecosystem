@@ -9,6 +9,7 @@ dist/
 runtime-logs/
 backend/db.sqlite3
 backend/staticfiles/
+backend/frontend_dist/
 frontend/start-tunnel.cmd
 *.log
 .DS_Store
