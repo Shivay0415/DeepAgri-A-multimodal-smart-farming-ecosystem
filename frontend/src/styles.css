@@ -12,11 +12,11 @@
   --sky: #59b8ff;
   --sky-deep: #1f7ccf;
   --sky-soft: #dff2ff;
-  --orange: #ff9c4a;
-  --orange-deep: #ef7f1a;
+  --orange: #e06908;
+  --orange-deep: #633003;
   --orange-soft: #fff0df;
   --danger: #c95443;
-  --success: #2d8a76;
+  --success: #05382d;
   --shadow: 0 20px 50px rgba(43, 110, 166, 0.14);
   font-family: "Segoe UI", "Trebuchet MS", sans-serif;
 }

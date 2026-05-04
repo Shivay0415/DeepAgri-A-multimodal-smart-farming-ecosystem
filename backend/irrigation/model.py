@@ -45,11 +45,14 @@ def load_artifact() -> IrrigationArtifact | None:
         return None
 
     raw = joblib.load(MODEL_PATH)
+    target_labels_raw = raw.get("target_labels")
+    target_labels = list(target_labels_raw) if target_labels_raw else None
+    
     _artifact_cache = IrrigationArtifact(
         pipeline=raw["pipeline"],
         feature_defaults=dict(raw["feature_defaults"]),
         model_family=str(raw.get("model_family", "Trained Irrigation Regressor")),
         prediction_kind=str(raw.get("prediction_kind", "regressor")),
-        target_labels=list(raw.get("target_labels", [])) or None,
+        target_labels=target_labels,
     )
     return _artifact_cache
