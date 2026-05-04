@@ -162,7 +162,7 @@ function IrrigationPage() {
                 })
               }
             >
-              Load seminar irrigation case
+              Load sample irrigation case
             </button>
           </div>
 

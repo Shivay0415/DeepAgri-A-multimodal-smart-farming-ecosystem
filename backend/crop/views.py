@@ -24,6 +24,7 @@ def crop_recommendation(request) -> JsonResponse:
             "potassium": require_float(payload, "potassium", min_value=0),
             "ph": require_float(payload, "ph", min_value=0, max_value=14),
             "temperature_c": optional_float(payload, "temperature_c"),
+            "humidity_pct": optional_float(payload, "humidity_pct", min_value=0, max_value=100),
             "rainfall_mm": optional_float(payload, "rainfall_mm", min_value=0),
             "location": optional_string(payload, "location"),
         }

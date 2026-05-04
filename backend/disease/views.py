@@ -21,8 +21,8 @@ def disease_detect(request) -> JsonResponse:
     response = analyze_leaf_image(
         filename=image.name,
         image_size_bytes=image.size,
+        image_bytes=image.read(),
         crop=crop,
         symptom_hint=symptom_hint,
     )
     return JsonResponse(response)
-

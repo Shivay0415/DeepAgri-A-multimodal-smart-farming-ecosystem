@@ -14,6 +14,12 @@ class Command(BaseCommand):
             default="data/crop_recommendation.csv",
             help="Path to the crop recommendation CSV dataset relative to backend/.",
         )
+        parser.add_argument(
+            "--trainer",
+            default="sklearn-mlp",
+            choices=["sklearn-mlp", "notebook-mlp", "notebook-transformer"],
+            help="Training backend to use for the crop recommendation model.",
+        )
 
     def handle(self, *args, **options) -> None:
         dataset_value = options["dataset"]
@@ -24,9 +30,11 @@ class Command(BaseCommand):
         if not dataset_path.exists():
             raise CommandError(f"Dataset not found: {dataset_path}")
 
-        summary = train_crop_model(dataset_path)
+        summary = train_crop_model(dataset_path, trainer=options["trainer"])
         self.stdout.write(self.style.SUCCESS("Crop model trained successfully."))
         self.stdout.write(f"Samples: {summary['samples']}")
         self.stdout.write(f"Classes: {', '.join(summary['classes'])}")
+        self.stdout.write(f"Trainer: {summary['trainer']}")
+        if summary["validation_accuracy"] is not None:
+            self.stdout.write(f"Validation accuracy: {summary['validation_accuracy']}")
         self.stdout.write(f"Model saved to: {summary['model_path']}")
-

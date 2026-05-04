@@ -98,10 +98,22 @@ def _recommendation_window(payload: dict, water_depth_mm: float) -> str:
     return "Irrigate in the next morning window between 05:30 and 07:30."
 
 
+def _classifier_water_depth(urgency_level: str, heuristic_water_depth_mm: float) -> float:
+    normalized = urgency_level.strip().lower()
+    if normalized == "high":
+        return max(heuristic_water_depth_mm, 6.0)
+    if normalized == "medium":
+        return max(2.5, heuristic_water_depth_mm * 0.75)
+    if normalized == "low":
+        return min(1.0, heuristic_water_depth_mm * 0.35)
+    return heuristic_water_depth_mm
+
+
 def create_irrigation_plan(payload: dict) -> dict:
     resolved_payload, weather_summary = _resolve_weather_inputs(payload)
 
     artifact = load_artifact()
+    urgency_level = None
     if artifact is not None:
         defaults = artifact.feature_defaults
         feature_row = {
@@ -127,9 +139,16 @@ def create_irrigation_plan(payload: dict) -> dict:
             if resolved_payload.get("area_hectares") is not None
             else defaults["area_hectares"],
         }
-        water_depth_mm = max(0.0, float(artifact.pipeline.predict([feature_row])[0]))
-        model_family = artifact.model_family
-        model_status = "trained"
+        if artifact.prediction_kind == "classifier":
+            urgency_level = str(artifact.pipeline.predict([feature_row])[0])
+            heuristic_depth = _heuristic_water_depth(resolved_payload)
+            water_depth_mm = _classifier_water_depth(urgency_level, heuristic_depth)
+            model_family = artifact.model_family
+            model_status = "trained"
+        else:
+            water_depth_mm = max(0.0, float(artifact.pipeline.predict([feature_row])[0]))
+            model_family = artifact.model_family
+            model_status = "trained"
     else:
         water_depth_mm = _heuristic_water_depth(resolved_payload)
         model_family = "Rule-based fallback until a trained Random Forest model is added"
@@ -153,6 +172,11 @@ def create_irrigation_plan(payload: dict) -> dict:
             f"{resolved_payload['humidity_pct']:.1f}% were factored into the decision."
         ),
     ]
+    if urgency_level:
+        rationale.insert(
+            0,
+            f"Classifier predicted irrigation urgency level '{urgency_level}'. The water depth was then scaled from the heuristic base plan.",
+        )
     if weather_summary.get("note"):
         rationale.append(weather_summary["note"])
 
@@ -164,6 +188,8 @@ def create_irrigation_plan(payload: dict) -> dict:
         "rationale": rationale,
         "model_family": model_family,
         "model_status": model_status,
+        "prediction_kind": artifact.prediction_kind if artifact is not None else "heuristic",
+        "urgency_level": urgency_level,
         "model_path": str(get_model_path()) if artifact_exists() else None,
         "weather_summary": weather_summary,
         "applied_inputs": {

@@ -59,7 +59,7 @@ const moduleLinks = [
     to: "/advisor",
     title: "Agri-Bot",
     accent: "grain",
-    description: "Ask farmer-friendly questions in English, Hindi, or Tamil.",
+    description: "Chat naturally with an AI farming copilot in English, Hindi, or Tamil.",
   },
 ];
 
@@ -73,9 +73,9 @@ function HomePage() {
           <p className="section-label">Unified Farm Intelligence</p>
           <h1>One platform for crop choice, water planning, disease response, market timing, and multilingual advice.</h1>
           <p>
-            AgriPulse is structured for live seminar presentation: each module has its own page,
-            each workflow is interactive, and the outputs connect across the platform like a real
-            operating system for farm decisions.
+            AgriPulse brings the full farm decision cycle into one clear interface. Each module
+            has its own page, every workflow is interactive, and the outputs connect across the
+            platform like a practical operating system for farm decisions.
           </p>
           <div className="hero-actions">
             <Link className="hero-button hero-button--primary" to="/crop">
@@ -128,7 +128,7 @@ function HomePage() {
 
       <section className="presentation-grid">
         <article className="presentation-card">
-          <p className="section-label">Seminar Storyline</p>
+          <p className="section-label">Workflow Story</p>
           <h2>Present the platform as one connected farmer journey.</h2>
           <div className="journey-list">
             {journey.map((item) => (
@@ -156,7 +156,7 @@ function HomePage() {
               <p>Crop and disease outputs can be reused across irrigation, market, and advisor pages.</p>
             </div>
             <div className="feature-line">
-              <strong>Seminar-friendly narrative</strong>
+              <strong>Clear presentation narrative</strong>
               <p>The overview page explains the full value chain from soil check to selling strategy.</p>
             </div>
             <div className="feature-line">

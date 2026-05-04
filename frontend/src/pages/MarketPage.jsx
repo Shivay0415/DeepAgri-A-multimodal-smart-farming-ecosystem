@@ -165,7 +165,7 @@ function MarketPage() {
                 })
               }
             >
-              Load seminar market case
+              Load sample market case
             </button>
           </div>
 

@@ -9,6 +9,7 @@ const initialForm = {
   nitrogen: "80",
   phosphorus: "45",
   potassium: "40",
+  humidity_pct: "72",
   ph: "6.6",
   temperature_c: "29",
   rainfall_mm: "55",
@@ -19,8 +20,9 @@ const fields = [
   { name: "nitrogen", label: "Nitrogen (N)", type: "number", step: "0.1" },
   { name: "phosphorus", label: "Phosphorus (P)", type: "number", step: "0.1" },
   { name: "potassium", label: "Potassium (K)", type: "number", step: "0.1" },
-  { name: "ph", label: "Soil pH", type: "number", step: "0.1" },
   { name: "temperature_c", label: "Temperature (C)", type: "number", step: "0.1" },
+  { name: "humidity_pct", label: "Humidity (%)", type: "number", step: "0.1" },
+  { name: "ph", label: "Soil pH", type: "number", step: "0.1" },
   { name: "rainfall_mm", label: "Rainfall (mm)", type: "number", step: "0.1" },
   { name: "location", label: "Location (optional)", type: "text" },
 ];
@@ -56,6 +58,7 @@ function CropPage() {
         nitrogen: Number(form.nitrogen),
         phosphorus: Number(form.phosphorus),
         potassium: Number(form.potassium),
+        humidity_pct: toNumberOrNull(form.humidity_pct),
         ph: Number(form.ph),
         temperature_c: toNumberOrNull(form.temperature_c),
         rainfall_mm: toNumberOrNull(form.rainfall_mm),
@@ -77,7 +80,7 @@ function CropPage() {
       <PageHero
         eyebrow="Module 1"
         title="Crop Recommendation Engine"
-        description="Turn N, P, K, pH, temperature, and rainfall into a recommended crop before the farmer commits the season."
+        description="Turn N, P, K, temperature, humidity, pH, and rainfall into a recommended crop before the farmer commits the season."
         accent="soil"
       >
         <div className="hero-badge-stack">
@@ -115,7 +118,7 @@ function CropPage() {
 
           <div className="quick-actions">
             <button className="ghost-link-button" type="button" onClick={() => setForm(initialForm)}>
-              Load seminar soil profile
+              Load sample soil profile
             </button>
           </div>
 

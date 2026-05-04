@@ -13,7 +13,8 @@ MODEL_PATH = MODEL_DIR / "crop_recommender.joblib"
 
 @dataclass(frozen=True)
 class CropArtifact:
-    pipeline: Any
+    artifact_type: str
+    payload: dict[str, Any]
     labels: list[str]
     feature_order: list[str]
     feature_defaults: dict[str, float]
@@ -44,13 +45,17 @@ def load_artifact() -> CropArtifact | None:
     if not MODEL_PATH.exists():
         return None
 
-    raw = joblib.load(MODEL_PATH)
+    try:
+        raw = joblib.load(MODEL_PATH)
+    except (ImportError, ModuleNotFoundError):
+        return None
+
     _artifact_cache = CropArtifact(
-        pipeline=raw["pipeline"],
+        artifact_type=str(raw.get("artifact_type", "sklearn")),
+        payload=raw,
         labels=list(raw["labels"]),
         feature_order=list(raw["feature_order"]),
         feature_defaults=dict(raw["feature_defaults"]),
         model_family=str(raw.get("model_family", "Trained Crop Recommender")),
     )
     return _artifact_cache
-

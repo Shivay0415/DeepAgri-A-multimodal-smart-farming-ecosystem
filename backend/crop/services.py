@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+from crop.deep_training import predict_torch_probabilities
 from crop.model import artifact_exists, get_model_path, load_artifact
 
 
@@ -99,6 +100,7 @@ def _profile_score(profile: CropProfile, payload: dict) -> tuple[float, list[str
     climate_bonus = 0.0
     climate_reason = "Climate context is neutral because no strong external signal was provided."
     temperature = payload.get("temperature_c")
+    humidity = payload.get("humidity_pct")
     rainfall = payload.get("rainfall_mm")
 
     if temperature is not None:
@@ -117,6 +119,14 @@ def _profile_score(profile: CropProfile, payload: dict) -> tuple[float, list[str
             climate_bonus += 8.0
             climate_reason = "Lower rainfall estimate favors relatively drier crop choices."
 
+    if humidity is not None:
+        if humidity >= 75 and profile.name == "rice":
+            climate_bonus += 8.0
+            climate_reason = "Higher humidity supports crops that prefer wetter field conditions."
+        elif humidity <= 60 and profile.name in {"cotton", "groundnut", "wheat"}:
+            climate_bonus += 6.0
+            climate_reason = "Lower humidity supports relatively drier crop choices."
+
     score = nutrient_gap + ph_penalty - climate_bonus
     reasons = [profile.notes[0], profile.notes[1], ph_reason, climate_reason]
     return score, reasons
@@ -132,13 +142,17 @@ def recommend_crop(payload: dict) -> dict:
                 raw_value = artifact.feature_defaults[feature_name]
             feature_values.append(raw_value)
 
-        probabilities = artifact.pipeline.predict_proba([feature_values])[0]
-        class_labels = list(artifact.pipeline.classes_)
-        ranked_probabilities = sorted(
-            zip(class_labels, probabilities),
-            key=lambda item: item[1],
-            reverse=True,
-        )
+        if artifact.artifact_type == "torch":
+            ranked_probabilities = predict_torch_probabilities(artifact.payload, feature_values)
+        else:
+            pipeline = artifact.payload["pipeline"]
+            probabilities = pipeline.predict_proba([feature_values])[0]
+            class_labels = list(pipeline.classes_)
+            ranked_probabilities = sorted(
+                zip(class_labels, probabilities),
+                key=lambda item: item[1],
+                reverse=True,
+            )
 
         top_predictions = []
         for crop_name, probability in ranked_probabilities[:3]:
@@ -148,7 +162,7 @@ def recommend_crop(payload: dict) -> dict:
                     "confidence": round(float(probability), 2),
                     "rationale": [
                         "Prediction generated from the trained crop recommendation model.",
-                        f"Missing climate inputs use training-set defaults stored with the model artifact.",
+                        "Missing climate inputs use training-set defaults stored with the model artifact.",
                     ],
                 }
             )

@@ -27,5 +27,7 @@ class Command(BaseCommand):
         summary = train_irrigation_model(dataset_path)
         self.stdout.write(self.style.SUCCESS("Irrigation model trained successfully."))
         self.stdout.write(f"Samples: {summary['samples']}")
+        self.stdout.write(f"Prediction kind: {summary['prediction_kind']}")
+        if summary.get("target_labels"):
+            self.stdout.write("Target labels: " + ", ".join(summary["target_labels"]))
         self.stdout.write(f"Model saved to: {summary['model_path']}")
-

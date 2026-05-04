@@ -68,7 +68,6 @@ function AppShell() {
           <div className="brand-mark">AP</div>
           <div>
             <p className="brand-name">AgriPulse</p>
-            <p className="brand-subtitle">Seminar-Ready Smart Farming Platform</p>
           </div>
         </div>
 
@@ -137,16 +136,16 @@ function AppShell() {
               </article>
               <article className="workspace-pill grain">
                 <span>Advisor</span>
-                <strong>{advisorAnswer?.language?.toUpperCase() || "No consultation yet"}</strong>
+                <strong>{advisorAnswer?.providerLabel || "No consultation yet"}</strong>
               </article>
             </div>
 
             <div className="workspace-actions">
               <Link className="hero-button hero-button--primary" to={nextRoute}>
-                {nextRoute === "/" ? "Review Overview" : "Continue Seminar Flow"}
+                {nextRoute === "/" ? "Review Overview" : "Continue Workflow"}
               </Link>
               <Link className="hero-button hero-button--secondary" to="/">
-                Dashboard Overview
+                Platform Overview
               </Link>
             </div>
           </div>

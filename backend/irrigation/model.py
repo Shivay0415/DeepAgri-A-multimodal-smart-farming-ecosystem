@@ -16,6 +16,8 @@ class IrrigationArtifact:
     pipeline: Any
     feature_defaults: dict[str, float | str]
     model_family: str
+    prediction_kind: str
+    target_labels: list[str] | None = None
 
 
 _artifact_cache: IrrigationArtifact | None = None
@@ -47,6 +49,7 @@ def load_artifact() -> IrrigationArtifact | None:
         pipeline=raw["pipeline"],
         feature_defaults=dict(raw["feature_defaults"]),
         model_family=str(raw.get("model_family", "Trained Irrigation Regressor")),
+        prediction_kind=str(raw.get("prediction_kind", "regressor")),
+        target_labels=list(raw.get("target_labels", [])) or None,
     )
     return _artifact_cache
-

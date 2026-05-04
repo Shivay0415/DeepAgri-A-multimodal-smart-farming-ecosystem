@@ -69,7 +69,7 @@ function DiseasePage() {
     event.preventDefault();
 
     if (!selectedFile) {
-      setError("Upload a leaf image or use the built-in seminar sample before analyzing.");
+      setError("Upload a leaf image or use the built-in sample before analyzing.");
       return;
     }
 
@@ -191,7 +191,7 @@ function DiseasePage() {
           <div className="upload-tile">
             <span>Selected image</span>
             <strong>{selectedFile?.name || "No file chosen yet"}</strong>
-            <p>Use your own leaf photo or load the bundled sample for a faster seminar flow.</p>
+            <p>Use your own leaf photo or load the bundled sample for a faster guided demo.</p>
           </div>
 
           <div className="form-actions">
@@ -210,13 +210,15 @@ function DiseasePage() {
               <p className="section-label">Diagnosis Output</p>
               <h2>Plant health status</h2>
             </div>
-            <span className="inline-chip">Connected to advisor</span>
+            <span className="inline-chip">
+              {result?.model_status === "trained" ? "CNN classifier" : "Catalog fallback"}
+            </span>
           </div>
 
           {loading ? (
             <div className="empty-state">
               <h3>Analyzing the uploaded leaf...</h3>
-              <p>The system is matching the case against the disease catalog and remedy guidance.</p>
+              <p>The system is checking for a trained image model first, then falling back to the disease catalog if needed.</p>
             </div>
           ) : error ? (
             <div className="empty-state empty-state--error">
@@ -254,6 +256,18 @@ function DiseasePage() {
                   <strong>{selectedFile ? "Uploaded" : "Pending"}</strong>
                 </article>
               </div>
+
+              {result.top_predictions?.length ? (
+                <div className="stacked-list">
+                  {result.top_predictions.map((prediction) => (
+                    <article className="detail-card" key={prediction.label}>
+                      <p>
+                        Alternate class: {prediction.label} ({Math.round((prediction.confidence || 0) * 100)}%)
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              ) : null}
 
               {previewUrl ? (
                 <div className="preview-frame">
