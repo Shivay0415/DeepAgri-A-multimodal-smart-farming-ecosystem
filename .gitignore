@@ -8,6 +8,8 @@ node_modules/
 dist/
 runtime-logs/
 backend/db.sqlite3
+backend/staticfiles/
+frontend/start-tunnel.cmd
 *.log
 .DS_Store
 Thumbs.db
