@@ -69,6 +69,23 @@ If PowerShell does not recognize `npm` right after installing Node.js, open a ne
 powershell -ExecutionPolicy Bypass -File .\run-dev.ps1
 ```
 
+## Public Deployment
+
+The repository now includes a [render.yaml](C:/Users/dell/Documents/capstone%20project/render.yaml) blueprint for a two-service Render deployment:
+
+- `deepagri-backend`: Django API on Render Web Service
+- `deepagri-frontend`: React dashboard on Render Static Site
+
+The frontend reads its production API base from `VITE_API_BASE_URL`, documented in [frontend/.env.example](C:/Users/dell/Documents/capstone%20project/frontend/.env.example). In the Render blueprint, that value is wired from the backend service URL so the dashboard can talk to Django after deployment.
+
+If you want OpenWeather, OpenAI, or Gemini support in production, add these optional environment variables in Render after the first deploy:
+
+- `OPENWEATHER_API_KEY`
+- `OPENAI_API_KEY`
+- `OPENAI_CHAT_MODEL`
+- `GEMINI_API_KEY`
+- `GEMINI_MODEL`
+
 ## Module 1 Status
 
 Module 1 now has a live frontend form and a Django API integration.

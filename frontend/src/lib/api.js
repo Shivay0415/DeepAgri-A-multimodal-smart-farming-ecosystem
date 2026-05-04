@@ -1,3 +1,12 @@
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
+
+function buildUrl(path) {
+  if (!API_BASE_URL) {
+    return path;
+  }
+  return `${API_BASE_URL}${path}`;
+}
+
 async function readJson(response) {
   try {
     return await response.json();
@@ -7,7 +16,7 @@ async function readJson(response) {
 }
 
 async function postJson(path, payload, fallbackMessage) {
-  const response = await fetch(path, {
+  const response = await fetch(buildUrl(path), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +54,7 @@ export async function requestDiseaseDetection({ crop, symptomHint, file }) {
   formData.append("symptom_hint", symptomHint);
   formData.append("image", file);
 
-  const response = await fetch("/api/v1/disease/detect/", {
+  const response = await fetch(buildUrl("/api/v1/disease/detect/"), {
     method: "POST",
     body: formData,
   });
@@ -75,7 +84,7 @@ export function requestAdvisorAnswer(payload) {
 }
 
 export async function requestBackendHealth() {
-  const response = await fetch("/health/");
+  const response = await fetch(buildUrl("/health/"));
   const data = await readJson(response);
 
   if (!response.ok) {
