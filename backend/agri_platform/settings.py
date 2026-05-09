@@ -117,7 +117,7 @@ USE_X_FORWARDED_HOST = True
 
 AGRI_BOT_PROVIDER = os.getenv("AGRI_BOT_PROVIDER", "auto").strip().lower()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
-OPENAI_CHAT_MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4.1-mini").strip()
+OPENAI_CHAT_MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini").strip()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip()
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash").strip()
 AGRI_BOT_TIMEOUT_SECONDS = float(os.getenv("AGRI_BOT_TIMEOUT_SECONDS", "45"))

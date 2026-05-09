@@ -265,20 +265,14 @@ def _build_system_prompt(payload: dict, language: str, entries: list[dict]) -> s
 
 
 def _extract_openai_text(payload: dict) -> str:
-    direct_text = _clean_text(payload.get("output_text"))
-    if direct_text:
-        return direct_text
-
     fragments: list[str] = []
-    for item in payload.get("output", []):
-        if not isinstance(item, dict) or item.get("type") != "message":
+    for choice in payload.get("choices", []):
+        if not isinstance(choice, dict):
             continue
-        for content in item.get("content", []):
-            if not isinstance(content, dict):
-                continue
-            text = _clean_text(content.get("text") or content.get("output_text"))
-            if text:
-                fragments.append(text)
+        message = choice.get("message") or {}
+        text = _clean_text(message.get("content"))
+        if text:
+            fragments.append(text)
 
     if fragments:
         return "\n\n".join(fragments)
@@ -304,15 +298,22 @@ def _extract_gemini_text(payload: dict) -> str:
 
 
 def _call_openai(messages: list[dict], payload: dict, language: str, entries: list[dict]) -> dict:
+    system_prompt = _build_system_prompt(payload, language, entries)
+    api_messages = [
+        {"role": "system", "content": system_prompt},
+    ] + messages
+    
     response = post_json(
-        "https://api.openai.com/v1/responses",
+        "https://api.openai.com/v1/chat/completions",
         {
             "model": settings.OPENAI_CHAT_MODEL,
-            "instructions": _build_system_prompt(payload, language, entries),
-            "input": _serialize_conversation(messages),
+            "messages": api_messages,
+            "temperature": 0.7,
+            "max_tokens": 1024,
         },
         headers={
             "Authorization": f"Bearer {settings.OPENAI_API_KEY}",
+            "Content-Type": "application/json",
         },
         timeout=settings.AGRI_BOT_TIMEOUT_SECONDS,
     )
